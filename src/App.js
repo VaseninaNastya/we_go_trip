@@ -1,17 +1,13 @@
-import { useState } from "react";
-import { FlexBlock } from "./publicStyledElements";
-import DatePickersContainer from "./components/DatePickersContainer/DatePickersContainer";
+import { QueryClient, QueryClientProvider } from "react-query";
+import GraphsContainer from "./components/GraphsContainer/GraphsContainer";
 
 function App() {
-  const [mainDates, setMainDates] = useState([null, null]);
-  const [compareDates, setCompareDates] = useState([null, null]);
+  const queryClient = new QueryClient();
+
   return (
-    <FlexBlock>
-      <DatePickersContainer
-        mainDatesState={[mainDates, setMainDates]}
-        compareDatesState={[compareDates, setCompareDates]}
-      />
-    </FlexBlock>
+    <QueryClientProvider client={queryClient}>
+      <GraphsContainer />
+    </QueryClientProvider>
   );
 }
 

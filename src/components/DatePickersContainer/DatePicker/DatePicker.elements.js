@@ -11,8 +11,8 @@ export const EndInput = styled.input`
 `;
 
 export const StartInput = styled.input`
-  height: 20px;
-  min-width: 141px;
+  height: 24px;
+  width: 100%;
   opacity: 0;
   padding: 0;
   border: 0;
@@ -20,9 +20,13 @@ export const StartInput = styled.input`
   position: absolute;
   left: 0;
   top: 0;
+  cursor: pointer;
 `;
 export const DatesContainer = styled.div`
   position: relative;
+  display: flex;
+  width: fit-content;
+  align-items: center;
 `;
 
 export const DatesLabel = styled.div`
@@ -37,4 +41,9 @@ export const Wrapper = styled.div`
   position: relative;
   top: 0;
   height: 20px;
+`;
+export const DateContainer = styled.div`
+  display: flex;
+  margin-left: 8px;
+  margin-top: 2px;
 `;

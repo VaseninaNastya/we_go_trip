@@ -6,7 +6,19 @@ import {
   DatesContainer,
   DatesLabel,
   Wrapper,
+  DateContainer,
 } from "./DatePicker.elements";
+import { datePickerСonst } from "../../../constants/datePickerСonst";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+
+const {
+  placeholder,
+  maxDate,
+  minDate,
+  startDateOptions,
+  endDateOptions,
+  localeLang,
+} = datePickerСonst;
 
 const DatePicker = ({ dates, setDates }) => (
   <Wrapper>
@@ -14,18 +26,23 @@ const DatePicker = ({ dates, setDates }) => (
       <DateRangePicker
         calendars={1}
         value={dates}
+        minDate={minDate}
+        maxDate={maxDate}
         onChange={(date) => setDates(date)}
         renderInput={(startProps, endProps) => {
           const startDate =
             Boolean(startProps.inputProps.value) &&
-            new Date(startProps.inputProps?.value);
+            new Date(startProps.inputProps?.value).toLocaleDateString(
+              localeLang,
+              startDateOptions
+            );
           const endDate =
             Boolean(endProps.inputProps.value) &&
-            new Date(endProps.inputProps.value).toLocaleDateString("ru-RU", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            });
+            new Date(endProps.inputProps.value).toLocaleDateString(
+              localeLang,
+              endDateOptions
+            );
+
           return (
             <DatesContainer>
               <StartInput
@@ -33,13 +50,16 @@ const DatePicker = ({ dates, setDates }) => (
                 {...startProps.inputProps}
               />
               <EndInput ref={endProps.inputRef} {...endProps.inputProps} />
-
               {startDate && endDate ? (
                 <DatesLabel>
-                  {startDate.getDate()} - {endDate.slice(0, endDate.length - 3)}
+                  <CalendarTodayIcon color="action" />
+                  <DateContainer>
+                    {startDate.slice(0, endDate.length - 3)} -{" "}
+                    {endDate.slice(0, endDate.length - 3)}
+                  </DateContainer>
                 </DatesLabel>
               ) : (
-                <DatesLabel>dd-mm-yyyy</DatesLabel>
+                <DatesLabel>{placeholder}</DatesLabel>
               )}
             </DatesContainer>
           );
