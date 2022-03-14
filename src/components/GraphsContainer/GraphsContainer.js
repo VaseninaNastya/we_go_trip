@@ -16,18 +16,20 @@ const GraphsContainer = () => {
   const [dates, setDates] = useState([null, maxDate]);
   const [startDates, endDates] = dates;
 
-  const { data, isSuccess } = useQuery("res", () => getData());
+  const { data, isLoading } = useQuery("res", () => getData());
 
-  const clickPercent = isSuccess && getClickPercent(data.views_to_clicks);
+  const parsedData = !isLoading && data && JSON.parse(data);
+  const clickPercent =
+    parsedData && getClickPercent(parsedData.views_to_clicks);
 
-  const purchasesData = isSuccess && filterData(data.purchases, dates);
-  const viewAndClicksData = isSuccess && filterData(clickPercent, dates);
-  const salesPercent = isSuccess && getSalesPercent(data.purchases);
-  const salesPercentData = isSuccess && filterData(salesPercent, dates);
+  const purchasesData = parsedData && filterData(parsedData.purchases, dates);
+  const viewAndClicksData = parsedData && filterData(clickPercent, dates);
+  const salesPercent = parsedData && getSalesPercent(parsedData.purchases);
+  const salesPercentData = parsedData && filterData(salesPercent, dates);
   const { sales, balance, click, views } = titlesСonst;
 
   return (
-    isSuccess && (
+    parsedData && (
       <Wrapper>
         <DatePickersContainer dates={dates} setDates={setDates} />
         {startDates && endDates && (

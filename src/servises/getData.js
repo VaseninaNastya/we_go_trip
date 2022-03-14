@@ -1,9 +1,17 @@
 import axios from "axios";
-import { serviceConst } from "../constants/serviceConst";
-const { url } = serviceConst;
 
 const getData = async () => {
-  const { data } = await axios.get(url);
-  return data;
+  const { data } = await axios.get(
+    `https://api.allorigins.win/get?url=${encodeURIComponent(
+      "https://wegotrip.com/api/v2/stats/plot"
+    )}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+  );
+  return data.contents;
 };
 export default getData;
