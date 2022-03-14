@@ -19,8 +19,6 @@ const GraphsContainer = () => {
 
   const purchasesData = filterData(purchases, dates);
   const viewAndClicksData = filterData(clickPercent, dates);
-  console.log("viewAndClicksData", viewAndClicksData);
-  console.log("purchases", purchases);
   const { sales, balance, click, views } = titlesСonst;
 
   return (

@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   width: fit-content;
+  margin-bottom: 32px;
 `;
 export const Interval = styled.div`
   width: 100%;
@@ -36,4 +37,18 @@ export const Title = styled.div`
   line-height: ${theme.fonts.smallLineHeight};
   text-transform: uppercase;
   letter-spacing: 1px;
+`;
+
+export const Benefit = styled.div`
+  padding: 2px 4px;
+  background: ${theme.rgba.halfGreen};
+  border-radius: 4px;
+  color: ${theme.colors.black};
+  font-size: ${theme.fonts.smallHeight};
+  line-height: ${theme.fonts.smallLineHeight};
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  height: fit-content;
+  width: fit-content;
 `;
