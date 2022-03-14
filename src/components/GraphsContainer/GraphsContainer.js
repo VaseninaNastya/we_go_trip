@@ -16,7 +16,10 @@ const GraphsContainer = () => {
   const { maxDate } = datePickerСonst;
   const [dates, setDates] = useState([null, maxDate]);
   const [startDates, endDates] = dates;
-  const { purchases, views_to_clicks } = res;
+
+  const { data, isSuccess } = useQuery("res", () => getData());
+
+  const { purchases, views_to_clicks } = data;
   const clickPercent = getClickPercent(views_to_clicks);
 
   const purchasesData = filterData(purchases, dates);
@@ -26,33 +29,35 @@ const GraphsContainer = () => {
   const { sales, balance, click, views } = titlesСonst;
 
   return (
-    <Wrapper>
-      <DatePickersContainer dates={dates} setDates={setDates} />
-      {startDates && endDates && (
-        <GraphsWrapper>
-          <GraphAndIndicators
-            data={purchasesData}
-            dates={dates}
-            title={sales}
-          />
-          <GraphAndIndicators
-            data={purchasesData}
-            dates={dates}
-            title={balance}
-          />
-          <GraphAndIndicators
-            data={viewAndClicksData}
-            dates={dates}
-            title={views}
-          />
-          <GraphAndIndicators
-            data={salesPercentData}
-            dates={dates}
-            title={click}
-          />
-        </GraphsWrapper>
-      )}
-    </Wrapper>
+    isSuccess && (
+      <Wrapper>
+        <DatePickersContainer dates={dates} setDates={setDates} />
+        {startDates && endDates && (
+          <GraphsWrapper>
+            <GraphAndIndicators
+              data={purchasesData}
+              dates={dates}
+              title={sales}
+            />
+            <GraphAndIndicators
+              data={purchasesData}
+              dates={dates}
+              title={balance}
+            />
+            <GraphAndIndicators
+              data={viewAndClicksData}
+              dates={dates}
+              title={views}
+            />
+            <GraphAndIndicators
+              data={salesPercentData}
+              dates={dates}
+              title={click}
+            />
+          </GraphsWrapper>
+        )}
+      </Wrapper>
+    )
   );
 };
 
