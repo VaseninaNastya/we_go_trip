@@ -19,12 +19,12 @@ const GraphsContainer = () => {
   const { data, isSuccess } = useQuery("res", () => getData());
 
   const { purchases, views_to_clicks } = data;
-  const clickPercent = getClickPercent(views_to_clicks);
+  const clickPercent = isSuccess && getClickPercent(views_to_clicks);
 
-  const purchasesData = filterData(purchases, dates);
-  const viewAndClicksData = filterData(clickPercent, dates);
-  const salesPercent = getSalesPercent(purchases);
-  const salesPercentData = filterData(salesPercent, dates);
+  const purchasesData = isSuccess && filterData(purchases, dates);
+  const viewAndClicksData = isSuccess && filterData(clickPercent, dates);
+  const salesPercent = isSuccess && getSalesPercent(purchases);
+  const salesPercentData = isSuccess && filterData(salesPercent, dates);
   const { sales, balance, click, views } = titlesСonst;
 
   return (
