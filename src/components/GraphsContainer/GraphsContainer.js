@@ -3,7 +3,6 @@ import { Wrapper, GraphsWrapper } from "./GraphsContainer.elements";
 import DatePickersContainer from "../DatePickersContainer/DatePickersContainer";
 import GraphAndIndicators from "./GraphAndIndicators/GraphAndIndicators";
 import { datePickerСonst } from "../../constants/datePickerСonst";
-import { res } from "../../data/data";
 import filterData from "./filterData";
 import getClickPercent from "./getClickPercent";
 import getSalesPercent from "./getSalesPercent";
