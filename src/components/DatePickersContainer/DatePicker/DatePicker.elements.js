@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../../styles/theme";
 
 export const EndInput = styled.input`
   height: 0;
@@ -27,6 +28,7 @@ export const DatesContainer = styled.div`
   display: flex;
   width: fit-content;
   align-items: center;
+  color: ${theme.colors.darkGray};
 `;
 
 export const DatesLabel = styled.div`
