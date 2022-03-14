@@ -28,10 +28,9 @@ const GraphAndIndicators = ({ data, dates, title }) => {
       localeLang,
       endDateOptions
     );
-    console.log("data", data);
     const sum = getSum(data);
     const prevSum = getPrevSum(data);
-    const mean = getSum(data) / data.length;
+    const mean = Math.floor(getSum(data) / data.length);
     const prevMean = getPrevSum(data) / data.length;
     return (
       <Wrapper>

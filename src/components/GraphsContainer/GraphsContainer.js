@@ -6,7 +6,9 @@ import { datePickerСonst } from "../../constants/datePickerСonst";
 import { res } from "../../data/data";
 import filterData from "./filterData";
 import getClickPercent from "./getClickPercent";
+import getSalesPercent from "./getSalesPercent";
 import { titlesСonst } from "../../constants/titlesСonst";
+
 import getData from "../../servises/getData";
 import { useQuery } from "react-query";
 
@@ -19,6 +21,8 @@ const GraphsContainer = () => {
 
   const purchasesData = filterData(purchases, dates);
   const viewAndClicksData = filterData(clickPercent, dates);
+  const salesPercent = getSalesPercent(purchases);
+  const salesPercentData = filterData(salesPercent, dates);
   const { sales, balance, click, views } = titlesСonst;
 
   return (
@@ -42,7 +46,7 @@ const GraphsContainer = () => {
             title={views}
           />
           <GraphAndIndicators
-            data={purchasesData}
+            data={salesPercentData}
             dates={dates}
             title={click}
           />

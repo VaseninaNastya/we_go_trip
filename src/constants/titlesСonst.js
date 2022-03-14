@@ -5,4 +5,5 @@ export const titlesСonst = {
   views: "Просмотры → Клики",
   click: "Клики → Продажи",
   percent: "%",
+  countWithoutClick: "10",
 };
